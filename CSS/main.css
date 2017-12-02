@@ -1,0 +1,60 @@
+@font-face {
+  font-family: "Treasure";
+  src: url("../Fonts/treasure.ttf");
+}
+
+@font-face {
+  font-family: "Dwarves";
+  src: url("../Fonts/Dwarves.ttf");
+}
+
+@font-face {
+  font-family: "Adventure";
+  src: url("../Fonts/adventure.ttf");
+}
+
+body {
+  text-align: center;
+  font-family: "Adventure", "Dwarves", "Treasure";
+  font-size: 30px;
+  background-color: black;
+}
+
+p {
+  color: white;
+}
+
+h1 {
+  color: red;
+  text-align: center;
+}
+
+div#main {
+  height: 500px;
+  text-align: center;
+  color: white;
+}
+
+div#ImageArea {
+  float:left;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index:-2;
+  background-image:url('../fire.gif');
+  width:100%;
+  height:100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+button {
+    background-color: #ffffff00;
+    width: 300px;
+    color: white;
+    border-radius: 50px;
+    border-color: white;
+    text-align: center;
+    font-family: "Adventure", "Dwarves", "Treasure";
+    font-size: 30px;
+}
