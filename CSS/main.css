@@ -49,9 +49,8 @@ div#ImageArea {
 }
 
 button {
-    background-color: #00000000;
+    background-color: #000000;
     width: 300px;
-    color: white;
     border-radius: 50px;
     border-color: white;
     text-align: center;
