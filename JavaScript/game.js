@@ -13,8 +13,8 @@ var scenes = {
       button : [
         { text : "Search", click : "nextScene()" }
       ]
-  },
-  2 : {
+    },
+    2 : {
       delay : 0.9,
       text : [
         ["You feel around"],
@@ -26,7 +26,7 @@ var scenes = {
         { text : "Light Fire", click : "flashLight()" }
       ]
     },
-  3 : {
+    3 : {
       delay : 0.9,
       text : [
         ["A fire roars into life"],
@@ -49,143 +49,146 @@ var scenes = {
       inventory : ["Wood"]
     },
 
-  //Locations
-  Campsite : {
-    delay : 0.9,
-    text : [
-      ["Your fire burns"],
-      ["To the East... ", "A forest"],
-      [""],
-      ["To the North... ", "An ocean"],
-      [""],
-      ["Everywhere else... ", "Darkness"],
-      [""]
-    ],
-    button : [
-      { text : "Go East", click : "nextScene('Woods')" },
-      { text : "Go North", click : "nextScene('Ocean')" },
-      { text : "Enter the Darkness", require : [{material : "Torch", count : 1}], click : "nextScene('Dark')", fail : "nextScene('DarkFail')" },
+    //Locations
+    Campsite : {
+      delay : 0.9,
+      text : [
+        ["Your fire burns"],
+        ["To the East... ", "A forest"],
+        [""],
+        ["To the North... ", "An ocean"],
+        [""],
+        ["Everywhere else... ", "Darkness"],
+        [""]
+      ],
+      button : [
+        { text : "Go East", click : "nextScene('Woods')" },
+        { text : "Go North", click : "nextScene('Ocean')" },
+        { text : "Enter the Darkness", require : [{material : "Torch", count : 1}], click : "nextScene('Dark')", fail : "nextScene('DarkFail')" },
         //Crafting
-      { text : "Stoke Fire - 1 Wood", click : "stokeFire()" },
-      { text : "Make Torch - 1 Wood, 1 Cloth", require : [{material : 'Wood', count : 1}, {material : 'Cloth', count : 1}], click : "craftMaterial('Torch', [{material : 'Wood', count : 1}, {material : 'Cloth', count : 1}])"},
-      { text : "Make Boat - 10 Wood, 5 Cloth", require : [{material : "Wood", count : 10}, {material : "Cloth", count : 5}], click : "craftMaterial('Boat', [{material : 'Wood', count : 10}, {material : 'Cloth', count : 5}])"},
-    ],
-    inventory : ["Wood", "Cloth", "Metal", "Torch", "Boat"]
-  },
+        { text : "Stoke Fire - 1 Wood", click : "stokeFire()" },
+        { text : "Make Torch - 1 Wood, 1 Cloth", require : [{material : 'Wood', count : 1}, {material : 'Cloth', count : 1}], click : "craftMaterial('Torch', [{material : 'Wood', count : 1}, {material : 'Cloth', count : 1}])"},
+        { text : "Make Boat - 10 Wood, 5 Cloth", require : [{material : "Wood", count : 10}, {material : "Cloth", count : 5}], click : "craftMaterial('Boat', [{material : 'Wood', count : 10}, {material : 'Cloth', count : 5}])"},
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
 
-  Dark : {
-    delay : 0.9,
-    text : [
-      ["You enter the darkness..."],
-      ["Your torch lighting the way"],
-      ["The rocky ground continues"],
-      [""]
-    ],
-    button : [
-      { text : "Keep Going", require : [{material : "Torch", count : 1}], click : "nextScene('DarkContinue')", fail : "nextScene('DarkFail')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-    inventory : ["Torch", "Sword"]
-  },
-  DarkFail : {
-    delay : 0.9,
-    text : [
-      ["The darkness is total"],
-      ["There appears to be nothing..."],
-      [""]
-    ],
-    button : [
-      { text : "Keep Going", click : "nextScene('DarkDeath')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ]
-  },
-  DarkDeath : {
-    delay : 0.9,
-    text : [
-      ["The darkness...", "Invades you mind..."],
-      ["It gets darker..."],
-      ["And darker..."],
-      ["And darker..."],
-      ["And darker..."],
-      [""],
-      [""],
-      ["Game Over"]
-    ],
-    button : [
-      { text : "Exit to Home", click : "exitGame()" },
-    ],
-  },
-  DarkContinue : {
-    delay : 0.9,
-    text : [
-      ["You keep going"],
-      ["A noise pierces the air... ", "\"Whrrrrgh\""],
-      ["You don't know what it is..."],
-      [""]
-    ],
-    button : [
-      { text : "Keep Going", require : [{material : "Sword", count : 1}, {material : "Torch", count : 1}], click : "nextScene('FightSuccess')", fail : "nextScene('FightFail')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-    inventory : ["Torch", "Sword"]
-  },
-  FightFail : {
-    delay : 0.9,
-    text : [
-      ["Something appears in the darkness..."],
-      ["Something...", "You've never seen before..."],
-      ["Before you realized what happened..."],
-      ["A sharp object slices across your chest"],
-      ["The darkness...", "Invades you mind..."],
-      ["It gets darker..."],
-      ["And darker..."],
-      ["And darker..."],
-      ["And darker..."],
-      [""],
-      [""],
-      ["Game Over"]
-    ],
-    button : [
-      { text : "Exit to Home", click : "exitGame()" },
-    ],
-  },
-  FightSuccess : {
-    delay : 0.9,
-    text : [
-      ["A great beast stands in front of you"],
-      ["You raise your sword...","And strike the beast"],
-      ["The beast recoils"],
-      ["Dark liquid spurts from the beast's wound"],
-      ["and the beast retreats into the darkness"],
-      [""]
-    ],
-    button : [
-      { text : "Keep Going", require : [{material : "Torch", count : 1}], click : "nextScene('ForestTorch')", fail : "nextScene('FightFail')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-    inventory : ["Torch"]
-  },
-  DarkContinue : {
-    delay : 0.9,
-    text : [
-      ["You have crossed the dark ocean..."],
-      ["Braved the forest of night..."],
-      ["And slain the beast of darkness..."],
-      ["Now... ", "you must defeat the darkness itself..."],
-      ["But how...", " and when..."],
-      ["Is unknown..."],
-      ["..."],
-      ["..."],
-      ["To Be Continued..."],
-    ],
-    button : [
-      { text : "Finish Game... For Now...", click : "exitGame()" },
-    ],
-    inventory : ["Torch"]
-  },
+    Dark : {
+      delay : 0.9,
+      text : [
+        ["You enter the darkness..."],
+        ["Your torch lighting the way"],
+        ["The rocky ground continues"],
+        [""]
+      ],
+      button : [
+        { text : "Keep Going", require : [{material : "Torch", count : 1}], click : "nextScene('DarkContinue')", fail : "nextScene('DarkFail')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    DarkFail : {
+      delay : 0.9,
+      text : [
+        ["The darkness is total"],
+        ["There appears to be nothing..."],
+        [""]
+      ],
+      button : [
+        { text : "Keep Going", click : "nextScene('DarkDeath')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    DarkDeath : {
+      delay : 0.9,
+      text : [
+        ["The darkness...", "Invades you mind..."],
+        ["It gets darker..."],
+        ["And darker..."],
+        ["And darker..."],
+        ["And darker..."],
+        [""],
+        [""],
+        ["Game Over"]
+      ],
+      button : [
+        { text : "Exit to Home", click : "exitGame()" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    DarkContinue : {
+      delay : 0.9,
+      text : [
+        ["You keep going"],
+        ["A noise pierces the air... ", "\"Whrrrrgh\""],
+        ["You don't know what it is..."],
+        [""]
+      ],
+      button : [
+        { text : "Keep Going", require : [{material : "Sword", count : 1}, {material : "Torch", count : 1}], click : "nextScene('FightSuccess')", fail : "nextScene('FightFail')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    FightFail : {
+      delay : 0.9,
+      text : [
+        ["Something appears in the darkness..."],
+        ["Something...", "You've never seen before..."],
+        ["Before you realized what happened..."],
+        ["A sharp object slices across your chest"],
+        ["The darkness...", "Invades you mind..."],
+        ["It gets darker..."],
+        ["And darker..."],
+        ["And darker..."],
+        ["And darker..."],
+        [""],
+        [""],
+        ["Game Over"]
+      ],
+      button : [
+        { text : "Exit to Home", click : "exitGame()" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    FightSuccess : {
+      delay : 0.9,
+      text : [
+        ["A great beast stands in front of you"],
+        ["You raise your sword...","And strike the beast"],
+        ["The beast recoils"],
+        ["Dark liquid spurts from the beast's wound"],
+        ["and the beast retreats into the darkness"],
+        [""]
+      ],
+      button : [
+        { text : "Keep Going", require : [{material : "Torch", count : 1}], click : "nextScene('ForestTorch')", fail : "nextScene('FightFail')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    DarkContinue : {
+      delay : 0.9,
+      text : [
+        ["You have crossed the dark ocean..."],
+        ["Braved the forest of night..."],
+        ["And slain the beast of darkness..."],
+        ["Now... ", "you must defeat the darkness itself..."],
+        ["But how...", " and when..."],
+        ["Is unknown..."],
+        ["..."],
+        ["..."],
+        ["To Be Continued..."],
+      ],
+      button : [
+        { text : "Finish Game... For Now...", click : "exitGame()" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
 
-  //Wood
-  Woods : {
+    //Wood
+    Woods : {
       delay : 0.9,
       text : [
         ["You approach the edge of a dense forest"],
@@ -198,49 +201,49 @@ var scenes = {
         { text : "Gather Sticks", click : "gatherSupplies('Wood')" },
         { text : "Go Back", click : "nextScene('Campsite')" },
       ],
-      inventory : ["Torch"]
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-  ForestTorch : {
-    delay : 0.9,
-    text : [
-      ["Your torch lights a path"],
-      ["The path continues deep into the forest"],
-      ["As does the darkness..."],
-      [""]
-    ],
-    button : [
-      { text : "Enter Forest", require : [{material : "Torch", count : 1}], click : "nextScene('ForestPath')", fail : "nextScene('ForestFail')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-    inventory : ["Torch"]
-  },
-  ForestPath : {
-    delay : 0.9,
-    text : [
-      ["As you continue... ", "Your fire fades into the distance"],
-      ["You approach a small clearing..."],
-      ["In the center... ", "A rock"],
-      ["Embedded in the rock... ", "A sword"],
-      [""]
-    ],
-    button : [
-      { text : "Take Sword", require : [{material : "Light", count : 1}], click : "gatherSupplies('Sword')", fail : "nextScene('SwordFail')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-    inventory : ["Torch"]
-  },
-  SwordFail : {
-    delay : 0.9,
-    text : [
-      ["You cannot pull the sword from the stone..."],
-      [""]
-    ],
-    button : [
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-    inventory : ["Torch"]
-  },
-  ForestFail : {
+    ForestTorch : {
+      delay : 0.9,
+      text : [
+        ["Your torch lights a path"],
+        ["The path continues deep into the forest"],
+        ["As does the darkness..."],
+        [""]
+      ],
+      button : [
+        { text : "Enter Forest", require : [{material : "Torch", count : 1}], click : "nextScene('ForestPath')", fail : "nextScene('ForestFail')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    ForestPath : {
+      delay : 0.9,
+      text : [
+        ["As you continue... ", "Your fire fades into the distance"],
+        ["You approach a small clearing..."],
+        ["In the center... ", "A rock"],
+        ["Embedded in the rock... ", "A sword"],
+        [""]
+      ],
+      button : [
+        { text : "Take Sword", require : [{material : "Light", count : 1}], click : "gatherSupplies('Sword')", fail : "nextScene('SwordFail')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    SwordFail : {
+      delay : 0.9,
+      text : [
+        ["You cannot pull the sword from the stone..."],
+        [""]
+      ],
+      button : [
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    ForestFail : {
       delay : 0.9,
       text : [
         ["The trees obscure your fire"],
@@ -252,7 +255,7 @@ var scenes = {
         { text : "Go Back", click : "nextScene('Campsite')" },
       ]
     },
-  ForestDeath : {
+    ForestDeath : {
       delay : 0.9,
       text : [
         ["You push forwards despite the darkness"],
@@ -263,8 +266,9 @@ var scenes = {
         { text : "Keep Going", click : "nextScene('ForestLost1')" },
         { text : "Go Back", click : "nextScene('Campsite')" },
       ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-  ForestLost1 : {
+    ForestLost1 : {
       delay : 0.9,
       text : [
         ["You delve deeper and deeper"],
@@ -276,8 +280,9 @@ var scenes = {
         { text : "Keep Going", click : "nextScene('ForestLost2')" },
         { text : "Go Back", click : "nextScene('Campsite')" },
       ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-  ForestLost2 : {
+    ForestLost2 : {
       delay : 0.9,
       text : [
         ["You push forwards despite the darkness"],
@@ -289,8 +294,9 @@ var scenes = {
         { text : "Keep Going", click : "nextScene('ForestLost3')" },
         { text : "Go Back", click : "nextScene('ForestLost3')" },
       ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-  ForestLost3 : {
+    ForestLost3 : {
       delay : 0.9,
       text : [
         ["You are lost"],
@@ -303,10 +309,11 @@ var scenes = {
       button : [
         { text : "Exit to Home", click : "exitGame()" },
       ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
 
-  //Ocean
-  Ocean : {
+    //Ocean
+    Ocean : {
       delay : 0.9,
       text : [
         ["You stand on a beach"],
@@ -321,104 +328,111 @@ var scenes = {
         { text : "Dig Up Cloth", click : "gatherSupplies('Cloth')" },
         { text : "Go Back", click : "nextScene('Campsite')" },
       ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-  OceanBoat : {
-    delay : 0.9,
-    text : [
-      ["You embark onto the water"],
-      ["The water is calm as you glide along"],
-      ["As you get further,", " the light of your fire fades away"],
-      [""]
-    ],
-    button : [
-      { text : "Keep Going", require : [{material : "Torch", count : 1}], click : "nextScene('OceanShore')", fail : "nextScene('OceanLost')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-  },
-  OceanLost : {
-    delay : 0.9,
-    text : [
-      ["You keep going in the darkness"],
-      ["But with no sense of direction"],
-      ["No sense of where you are"],
-      ["You keep drifting..."],
-      ["And drifting..."],
-      ["And drifting..."],
-      ["And drifting..."],
-      ["And drifting..."],
-      [""],
-      [""],
-      ["Game Over"],
-    ],
-    button : [
-      { text : "Exit to Home", click : "exitGame()" },
-    ],
-  },
-  OceanWater : {
-    delay : 0.9,
-    text : [
-      ["You continue sailing..."],
-      ["When suddenly... ", "A light from the sky..."],
-      ["<em>Crash<em>"],
-      ["The light impacts with the water"],
-      ["And floats there..."],
-      [""]
-    ],
-    button : [
-      { text : "Take Light", require : [], click : "craftMaterial('Light', [])"},
-      { text : "Keep Going", click : "nextScene('CampsiteReturn')" },
-    ],
-  },
-  OceanShore : {
-    delay : 0.9,
-    text : [
-      ["You arrive at a distance shore by torch light"],
-      ["The nothingness... ", "Continues..."],
-      ["But... ", "In the distance... ", "A light..."],
-      [""]
-    ],
-    button : [
-      { text : "Keep Going", click : "nextScene('CampsiteReturn')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-  },
-  OceanFail : {
-    delay : 0.9,
-    text : [
-      ["You enter the water and start swimming"],
-      ["The water is cold"],
-      ["It takes all your strength to stay above water"],
-      [""]
-    ],
-    button : [
-      { text : "Keep Going", click : "nextScene('OceanDeath')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-  },
-  OceanDeath : {
-    delay : 0.9,
-    text : [
-      ["You try to keep swimming"],
-      ["The waves get bigger"],
-      ["It takes all your strength to stay above water"],
-      ["Something brushes your leg..."],
-      ["Something... ", "Is under the water... "],
-      ["Before you know what's happening"],
-      ["Something pulls you under"],
-      ["Down..."],
-      ["Down..."],
-      ["Down..."],
-      ["Down..."],
-      [""],
-      [""],
-      ["Game Over"],
-    ],
-    button : [
-      { text : "Exit to Home", click : "exitGame()" },
-    ],
-  },
+    OceanBoat : {
+      delay : 0.9,
+      text : [
+        ["You embark onto the water"],
+        ["The water is calm as you glide along"],
+        ["As you get further,", " the light of your fire fades away"],
+        [""]
+      ],
+      button : [
+        { text : "Keep Going", require : [{material : "Torch", count : 1}], click : "nextScene('OceanShore')", fail : "nextScene('OceanLost')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    OceanLost : {
+      delay : 0.9,
+      text : [
+        ["You keep going in the darkness"],
+        ["But with no sense of direction"],
+        ["No sense of where you are"],
+        ["You keep drifting..."],
+        ["And drifting..."],
+        ["And drifting..."],
+        ["And drifting..."],
+        ["And drifting..."],
+        [""],
+        [""],
+        ["Game Over"],
+      ],
+      button : [
+        { text : "Exit to Home", click : "exitGame()" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    OceanWater : {
+      delay : 0.9,
+      text : [
+        ["You continue sailing..."],
+        ["When suddenly... ", "A light from the sky..."],
+        ["<em>Crash<em>"],
+        ["The light impacts with the water"],
+        ["And floats there..."],
+        [""]
+      ],
+      button : [
+        { text : "Take Light", require : [], click : "craftMaterial('Light', [])"},
+        { text : "Keep Going", click : "nextScene('CampsiteReturn')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    OceanShore : {
+      delay : 0.9,
+      text : [
+        ["You arrive at a distance shore by torch light"],
+        ["The nothingness... ", "Continues..."],
+        ["But... ", "In the distance... ", "A light..."],
+        [""]
+      ],
+      button : [
+        { text : "Keep Going", click : "nextScene('CampsiteReturn')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    OceanFail : {
+      delay : 0.9,
+      text : [
+        ["You enter the water and start swimming"],
+        ["The water is cold"],
+        ["It takes all your strength to stay above water"],
+        [""]
+      ],
+      button : [
+        { text : "Keep Going", click : "nextScene('OceanDeath')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    OceanDeath : {
+      delay : 0.9,
+      text : [
+        ["You try to keep swimming"],
+        ["The waves get bigger"],
+        ["It takes all your strength to stay above water"],
+        ["Something brushes your leg..."],
+        ["Something... ", "Is under the water... "],
+        ["Before you know what's happening"],
+        ["Something pulls you under"],
+        ["Down..."],
+        ["Down..."],
+        ["Down..."],
+        ["Down..."],
+        [""],
+        [""],
+        ["Game Over"],
+      ],
+      button : [
+        { text : "Exit to Home", click : "exitGame()" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
 
-  CampsiteReturn : {
+    CampsiteReturn : {
       delay : 0.9,
       text : [
         ["Somehow... ", "You've returned to you campsite..."],
@@ -439,10 +453,10 @@ var scenes = {
         { text : "Make Torch - 1 Wood, 1 Cloth", require : [{material : 'Wood', count : 1}, {material : 'Cloth', count : 1}], click : "craftMaterial('Torch', [{material : 'Wood', count : 1}, {material : 'Cloth', count : 1}])"},
         { text : "Make Boat - 10 Wood, 5 Cloth", require : [{material : "Wood", count : 10}, {material : "Cloth", count : 5}], click : "craftMaterial('Boat', [{material : 'Wood', count : 10}, {material : 'Cloth', count : 5}])"},
       ],
-      inventory : ["Wood", "Cloth", "Metal", "Torch", "Boat"]
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
 
-  GatheredWood : {
+    GatheredWood : {
       delay : 0.9,
       text : [
         ["You've gathered some wood"],
@@ -456,26 +470,27 @@ var scenes = {
         { text : "Gather Sticks", click : "gatherSupplies('Wood')" },
         { text : "Go Back", click : "nextScene('Campsite')" },
       ],
-      inventory : ["Torch"]
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-  GatheredCloth : {
-    delay : 0.9,
-    text : [
-      ["You've gathered some cloth"],
-      ["You stand on a beach"],
-      ["Ahead of you is a vast ocean"],
-      ["Your fire is burning in the distance"],
-      ["You can make out various peices of fabric in the sand"],
-      [""]
-    ],
-    button : [
-      { text : "Go North", require : [{material : "Boat", count : 1}], click : "nextScene('OceanBoat')", fail : "nextScene('OceanFail')" },
+    GatheredCloth : {
+      delay : 0.9,
+      text : [
+        ["You've gathered some cloth"],
+        ["You stand on a beach"],
+        ["Ahead of you is a vast ocean"],
+        ["Your fire is burning in the distance"],
+        ["You can make out various peices of fabric in the sand"],
+        [""]
+      ],
+      button : [
+        { text : "Go North", require : [{material : "Boat", count : 1}], click : "nextScene('OceanBoat')", fail : "nextScene('OceanFail')" },
 
-      { text : "Dig Up Cloth", click : "gatherSupplies('Cloth')" },
-      { text : "Go Back", click : "nextScene('Campsite')" },
-    ],
-  },
-  GatheredSword : {
+        { text : "Dig Up Cloth", click : "gatherSupplies('Cloth')" },
+        { text : "Go Back", click : "nextScene('Campsite')" },
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
+    },
+    GatheredSword : {
       delay : 0.9,
       text : [
         ["You pull on the sword"],
@@ -486,9 +501,10 @@ var scenes = {
       ],
       button : [
         { text : "Leave", click : "nextScene('Campsite')" },
-      ]
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-  GatheredLight : {
+    GatheredLight : {
       delay : 0.9,
       text : [
         ["The light imbues you with strength!"],
@@ -499,9 +515,10 @@ var scenes = {
       ],
       button : [
         { text : "Leave", click : "nextScene('Campsite')" },
-      ]
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-  FireDied : {
+    FireDied : {
       delay : 0.9,
       text : [
         ["Your fire has died"],
@@ -520,9 +537,10 @@ var scenes = {
       ],
       button : [
         { text : "Exit to Home", click : "exitGame()" },
-      ]
+      ],
+      inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-}
+  }
 
   var text = document.getElementById("TextArea")
   var button = document.getElementById("ButtonArea")
@@ -576,7 +594,7 @@ var scenes = {
 
   var invet = {
     Wood : 7,
-    Cloth : 999,
+    Cloth : 0,
     Metal : 0,
     Torch : 0,
     Boat : 0,
@@ -648,6 +666,8 @@ var scenes = {
     button.innerHTML = ""
     inventory.innerHTML = ""
 
+    console.log("Fading In: " + scn)
+
     var texts = scenes[scn].text
     var buttons = scenes[scn].button
     var inventorys = scenes[scn].inventory
@@ -671,27 +691,23 @@ var scenes = {
       }
     }
 
+    console.log("Loaded Texts")
+
     for (var i = 0; i < buttons.length; i++) {
       var id = "SceneButton" + scn + i
-
       if (buttons[i].require != null) {
-
         var req = buttons[i].require
         var metReq = true
 
         for (var j = 0; j < req.length; j++) {
-
           if (invet[req[j].material] < req[j].count) {
             metReq = false
+            console.log("Didn't meet req");
+            break
           }
         }
 
         if (metReq) {
-          for (var i = 0; i < req.length; i++) {
-            var mat = req.material
-            invet[mat] -= req.count
-          }
-
           var click = buttons[i].click
           console.log(click);
           button.innerHTML += "<button id=" + id + " onclick=\"" + click + ";\" style=\"opacity:0; transition: opacity 1.4s; \">" + buttons[i].text + "</button>"
@@ -715,7 +731,7 @@ var scenes = {
         var id = "SceneInvent" + scn + i
         var count = invet[inventorys[i]]
         if (count > 0){
-          inventory.innerHTML += "<p id=\"" + id + "\" style=\"opacity:0; transition: opacity 1.4s; display: inline;\">" + inventorys[i] + ": " + count + "</p>"
+          inventory.innerHTML += "<p id=\"" + id + "\" style=\"opacity:0; transition: opacity 1.4s; display: inline;\">" + inventorys[i] + ": " + count + "   </p>"
           showText(id, delay+=scenes[scn].delay)
         }
       }
