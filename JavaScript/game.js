@@ -576,7 +576,7 @@ var scenes = {
 
   var invet = {
     Wood : 7,
-    Cloth : 0,
+    Cloth : 999,
     Metal : 0,
     Torch : 0,
     Boat : 0,
