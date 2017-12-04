@@ -556,12 +556,16 @@ var scenes = {
 
   function craftMaterial(material, req) {
     for (var i = 0; i < req.length; i++) {
-      var mat = req.material
-      invet[mat] -= req.count
+      var mat = req[i].material
+      invet[mat] -= req[i].count
     }
 
     invet[material] += 1
     var delay = fadeOutScene(sceneNum)
+    if (material == "Sword" || material == "Light") {
+      nextScene("Gathered"+material)
+      return
+    }
     setTimeout( function () {fadeInScene(sceneNum)}, delay * 1000)
     setTimeout( function () { image.style.opacity = fireLength/maxFire; }, 0.1 * 1000)
   }
