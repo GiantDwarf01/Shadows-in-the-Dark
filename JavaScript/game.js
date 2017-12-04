@@ -163,12 +163,12 @@ var scenes = {
         [""]
       ],
       button : [
-        { text : "Keep Going", require : [{material : "Torch", count : 1}], click : "nextScene('ForestTorch')", fail : "nextScene('FightFail')" },
+        { text : "Keep Going", require : [{material : "Torch", count : 1}], click : "nextScene('DarkWin')", fail : "nextScene('FightFail')" },
         { text : "Go Back", click : "nextScene('Campsite')" },
       ],
       inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
     },
-    DarkContinue : {
+    DarkWin : {
       delay : 0.9,
       text : [
         ["You have crossed the dark ocean..."],
