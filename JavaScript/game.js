@@ -227,7 +227,7 @@ var scenes = {
         [""]
       ],
       button : [
-        { text : "Take Sword", require : [{material : "Light", count : 1}], click : "gatherSupplies('Sword')", fail : "nextScene('SwordFail')" },
+        { text : "Take Sword", require : [{material : "Light", count : 1}], click : "craftMaterial('Sword', [])", fail : "nextScene('SwordFail')" },
         { text : "Go Back", click : "nextScene('Campsite')" },
       ],
       inventory : ["Wood", "Cloth", "Torch", "Sword", "Light", "Boat"]
@@ -567,7 +567,7 @@ var scenes = {
   }
 
   function gatherSupplies(material) {
-    invet[material] += Math.floor((Math.random() * 5));
+    invet[material] += Math.floor((Math.random() * 5)+1);
     nextScene("Gathered"+material)
   }
 
